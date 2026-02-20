@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Big Dave’s Burger</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header>
+    <h1>🍔 Big Dave’s Burger</h1>
+    <nav>
+        <button onclick="mostrarSeccion('inicio')">Inicio</button>
+        <button onclick="mostrarSeccion('menu')">Menú</button>
+        <button onclick="mostrarSeccion('contacto')">Contacto</button>
+    </nav>
+</header>
+
+<main>
+
+<!-- INICIO -->
+<section id="inicio" class="seccion visible">
+    <div class="banner">
+        <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1600&q=80" alt="Hamburguesa Banner">
+        <div class="banner-texto">
+            <h2>Bienvenido a Big Dave’s Burger</h2>
+            <p>
+                Las hamburguesas más jugosas, papas crujientes y refrescos helados preparados con calidad premium.
+                ¡Disfruta el verdadero sabor de la carne!
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- MENU -->
+<section id="menu" class="seccion">
+    <h2>Arma tu combo!</h2>
+
+    <div class="productos">
+
+        <div class="producto">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80">
+            <h3>Hamburguesa Clásica</h3>
+            <button onclick="agregarAlCarrito('Hamburguesa Chica',79)">Chica - $79</button>
+            <button onclick="agregarAlCarrito('Hamburguesa Mediana',99)">Mediana - $99</button>
+            <button onclick="agregarAlCarrito('Hamburguesa Grande',129)">Grande - $129</button>
+        </div>
+
+        <div class="producto">
+            <img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=600&q=80">
+            <h3>Papas Fritas</h3>
+            <button onclick="agregarAlCarrito('Papas Chicas',39)">Chicas - $39</button>
+            <button onclick="agregarAlCarrito('Papas Medianas',49)">Medianas - $49</button>
+            <button onclick="agregarAlCarrito('Papas Grandes',59)">Grandes - $59</button>
+        </div>
+
+        <div class="producto">
+            <img src="https://hips.hearstapps.com/hmg-prod/images/refrescos-portada-1653207586.jpg">
+            <h3>Refresco</h3>
+            <button onclick="agregarAlCarrito('Refresco Chico',29)">Chico - $29</button>
+            <button onclick="agregarAlCarrito('Refresco Mediano',35)">Mediano - $35</button>
+            <button onclick="agregarAlCarrito('Refresco Grande',45)">Grande - $45</button>
+        </div>
+
+    </div>
+
+    <div class="carrito">
+        <h3>Tu Orden</h3>
+        <ul id="lista-carrito"></ul>
+        <p>Total: $<span id="total">0</span></p>
+        <button onclick="finalizarPago()">Finalizar Pago</button>
+    </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="seccion">
+    <h2>Contacto</h2>
+
+    <img class="contacto-img"
+    src="https://www.shutterstock.com/image-photo/photorealistic-image-smiling-burger-king-600nw-2619544043.jpg">
+
+    <p><strong>Dirección:</strong> Av. Sabor 123, Ciudad de México</p>
+    <p><strong>Teléfono:</strong> 55 1234 5678</p>
+    <p><strong>Email:</strong> contacto@bigdavesburger.com</p>
+    <p><strong>Horario:</strong> Lunes a Domingo 12:00 PM - 11:00 PM</p>
+</section>
+
+<!-- CONFIRMACION -->
+<section id="confirmacion" class="seccion confirmacion">
+    <h2>¡Gracias por tu compra!</h2>
+
+    <h3>Total Pagado: $<span id="total-pagado">0</span></h3>
+
+    <img class="confirmacion-img"
+    src="https://elvalle.com.mx/wp-content/uploads/2024/05/LAU-ADELANTO-8.jpg">
+
+    <p>Tu pedido ha sido procesado correctamente. Nuestro repartidor va en camino.</p>
+    
+    <button onclick="reiniciarPedido()">Volver al Inicio</button>
+</section>
+
+</main>
+
+<footer>
+<p>© 2026 Big Dave’s Burger</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
