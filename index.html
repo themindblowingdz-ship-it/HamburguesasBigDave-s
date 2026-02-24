@@ -4,14 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Big Dave’s Burger</title>
+
+<!-- Fuente desde Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+
+<!-- Hoja de estilos principal -->
 <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
+<!-- =========================
+     HEADER / NAVEGACIÓN
+========================= -->
 <header>
+    <!-- Título del sitio con icono -->
     <h1>🍔 Big Dave’s Burger</h1>
+
+    <!-- Botones de navegación entre secciones -->
     <nav>
         <button onclick="mostrarSeccion('inicio')">Inicio</button>
         <button onclick="mostrarSeccion('menu')">Menú</button>
@@ -21,10 +31,15 @@
 
 <main>
 
-<!-- INICIO -->
+<!-- =========================
+     SECCIÓN INICIO / BANNER
+========================= -->
 <section id="inicio" class="seccion visible">
     <div class="banner">
+        <!-- Imagen de banner -->
         <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1600&q=80" alt="Hamburguesa Banner">
+
+        <!-- Texto sobre el banner -->
         <div class="banner-texto">
             <h2>Bienvenido a Big Dave’s Burger</h2>
             <p>
@@ -35,30 +50,37 @@
     </div>
 </section>
 
-<!-- MENU -->
+<!-- =========================
+     SECCIÓN MENÚ / SELECCIÓN DE COMIDA
+========================= -->
 <section id="menu" class="seccion">
     <h2>Arma tu combo!</h2>
 
     <div class="productos">
 
+        <!-- Producto: Hamburguesa -->
         <div class="producto">
-            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="Hamburguesa Clásica">
             <h3>Hamburguesa Clásica</h3>
+
+            <!-- Botones para agregar al carrito según tamaño -->
             <button onclick="agregarAlCarrito('Hamburguesa Chica',79)">Chica - $79</button>
             <button onclick="agregarAlCarrito('Hamburguesa Mediana',99)">Mediana - $99</button>
             <button onclick="agregarAlCarrito('Hamburguesa Grande',129)">Grande - $129</button>
         </div>
 
+        <!-- Producto: Papas fritas -->
         <div class="producto">
-            <img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=600&q=80">
+            <img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=600&q=80" alt="Papas Fritas">
             <h3>Papas Fritas</h3>
             <button onclick="agregarAlCarrito('Papas Chicas',39)">Chicas - $39</button>
             <button onclick="agregarAlCarrito('Papas Medianas',49)">Medianas - $49</button>
             <button onclick="agregarAlCarrito('Papas Grandes',59)">Grandes - $59</button>
         </div>
 
+        <!-- Producto: Refresco -->
         <div class="producto">
-            <img src="https://hips.hearstapps.com/hmg-prod/images/refrescos-portada-1653207586.jpg">
+            <img src="https://hips.hearstapps.com/hmg-prod/images/refrescos-portada-1653207586.jpg" alt="Refresco">
             <h3>Refresco</h3>
             <button onclick="agregarAlCarrito('Refresco Chico',29)">Chico - $29</button>
             <button onclick="agregarAlCarrito('Refresco Mediano',35)">Mediano - $35</button>
@@ -67,6 +89,7 @@
 
     </div>
 
+    <!-- Carrito de compras dinámico -->
     <div class="carrito">
         <h3>Tu Orden</h3>
         <ul id="lista-carrito"></ul>
@@ -75,39 +98,53 @@
     </div>
 </section>
 
-<!-- CONTACTO -->
+<!-- =========================
+     SECCIÓN CONTACTO
+========================= -->
 <section id="contacto" class="seccion">
     <h2>Contacto</h2>
 
+    <!-- Imagen ilustrativa del contacto -->
     <img class="contacto-img"
-    src="https://www.shutterstock.com/image-photo/photorealistic-image-smiling-burger-king-600nw-2619544043.jpg">
+    src="https://www.shutterstock.com/image-photo/photorealistic-image-smiling-burger-king-600nw-2619544043.jpg" alt="Cajero de hamburguesa">
 
+    <!-- Información de contacto -->
     <p><strong>Dirección:</strong> Av. Sabor 123, Ciudad de México</p>
     <p><strong>Teléfono:</strong> 55 1234 5678</p>
     <p><strong>Email:</strong> contacto@bigdavesburger.com</p>
     <p><strong>Horario:</strong> Lunes a Domingo 12:00 PM - 11:00 PM</p>
 </section>
 
-<!-- CONFIRMACION -->
+<!-- =========================
+     SECCIÓN CONFIRMACIÓN / PAGO
+========================= -->
 <section id="confirmacion" class="seccion confirmacion">
     <h2>¡Gracias por tu compra!</h2>
 
+    <!-- Total pagado dinámico -->
     <h3>Total Pagado: $<span id="total-pagado">0</span></h3>
 
+    <!-- Imagen ilustrativa del repartidor -->
     <img class="confirmacion-img"
-    src="https://elvalle.com.mx/wp-content/uploads/2024/05/LAU-ADELANTO-8.jpg">
+    src="https://elvalle.com.mx/wp-content/uploads/2024/05/LAU-ADELANTO-8.jpg" alt="Repartidor">
 
+    <!-- Mensaje de confirmación -->
     <p>Tu pedido ha sido procesado correctamente. Nuestro repartidor va en camino.</p>
     
+    <!-- Botón para reiniciar pedido -->
     <button onclick="reiniciarPedido()">Volver al Inicio</button>
 </section>
 
 </main>
 
+<!-- =========================
+     FOOTER
+========================= -->
 <footer>
 <p>© 2026 Big Dave’s Burger</p>
 </footer>
 
+<!-- Script de funcionalidades -->
 <script src="script.js"></script>
 </body>
 </html>
