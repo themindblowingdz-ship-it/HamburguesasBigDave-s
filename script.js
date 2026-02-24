@@ -1,82 +1,74 @@
 // ===============================
-// VARIABLES GLOBALES
+// VARIABLES GLOBALES CON PERSISTENCIA
 // ===============================
 
-// Arreglo que almacena los productos agregados al carrito.
-// Cada elemento será un objeto con nombre y precio.
-let carrito = [];
+// Recupera el carrito guardado en localStorage.
+// Si no existe nada guardado, inicia como arreglo vacío.
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-// Variable numérica que almacena el total acumulado del pedido.
-let total = 0;
+// Recupera el total guardado.
+// Si no existe, inicia en 0.
+let total = JSON.parse(localStorage.getItem("total")) || 0;
 
 
 // ===============================
 // FUNCIÓN: mostrarSeccion()
 // ===============================
-// Recibe el id de la sección que se desea mostrar.
-// Oculta todas las secciones y luego muestra únicamente la seleccionada.
+// Muestra una sección específica y oculta las demás.
 
 function mostrarSeccion(seccionId){
 
-    // Selecciona todas las secciones que tengan la clase "seccion"
-    // y elimina la clase "visible" para ocultarlas.
     document.querySelectorAll(".seccion").forEach(sec=>{
         sec.classList.remove("visible");
     });
 
-    // Agrega la clase "visible" únicamente a la sección
-    // cuyo id coincide con el parámetro recibido.
     document.getElementById(seccionId).classList.add("visible");
+}
+
+
+// ===============================
+// FUNCIÓN: guardarEnNube()
+// ===============================
+// Guarda los datos actuales en localStorage.
+// Esto simula almacenamiento en la nube.
+
+function guardarEnNube(){
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    localStorage.setItem("total", JSON.stringify(total));
 }
 
 
 // ===============================
 // FUNCIÓN: agregarAlCarrito()
 // ===============================
-// Recibe el nombre y precio del producto seleccionado.
-// Lo agrega al arreglo carrito y actualiza el total.
+// Agrega un producto al carrito y actualiza total.
 
 function agregarAlCarrito(nombre, precio){
 
-    // Agrega un objeto con nombre y precio al arreglo carrito.
     carrito.push({nombre, precio});
-
-    // Suma el precio del producto al total acumulado.
     total += precio;
 
-    // Llama a la función que actualiza visualmente el carrito en el HTML.
-    actualizarCarrito();
+    guardarEnNube();        // Guarda cambios
+    actualizarCarrito();    // Refresca vista
 }
 
 
 // ===============================
 // FUNCIÓN: actualizarCarrito()
 // ===============================
-// Actualiza dinámicamente la lista del carrito en el DOM
-// y muestra el total acumulado.
+// Renderiza dinámicamente el carrito en pantalla.
 
 function actualizarCarrito(){
 
-    // Obtiene el elemento <ul> donde se muestran los productos.
     const lista = document.getElementById("lista-carrito");
-
-    // Limpia la lista para evitar duplicados al volver a renderizar.
     lista.innerHTML = "";
 
-    // Recorre el arreglo carrito y crea un <li> por cada producto.
     carrito.forEach(item=>{
-
-        // Crea un nuevo elemento de lista.
         const li = document.createElement("li");
-
-        // Asigna el texto con nombre y precio del producto.
         li.textContent = `${item.nombre} - $${item.precio}`;
-
-        // Agrega el elemento <li> al <ul>.
         lista.appendChild(li);
     });
 
-    // Actualiza el contenido del elemento que muestra el total.
     document.getElementById("total").textContent = total;
 }
 
@@ -84,24 +76,19 @@ function actualizarCarrito(){
 // ===============================
 // FUNCIÓN: finalizarPago()
 // ===============================
-// Verifica si el carrito tiene productos.
-// Si está vacío, muestra alerta.
-// Si no, muestra la sección de confirmación.
+// Verifica si hay productos antes de mostrar confirmación.
 
 function finalizarPago(){
 
-    // Condición que verifica si el total es 0.
     if(total === 0){
-
-        // Muestra una alerta si el carrito está vacío.
         alert("Tu carrito está vacío.");
-        return; // Detiene la ejecución de la función.
+        return;
     }
 
-    // Muestra el total pagado en la sección de confirmación.
     document.getElementById("total-pagado").textContent = total;
 
-    // Cambia la vista a la sección de confirmación.
+    console.log("Simulación de envío a la nube...");
+
     mostrarSeccion("confirmacion");
 }
 
@@ -109,20 +96,27 @@ function finalizarPago(){
 // ===============================
 // FUNCIÓN: reiniciarPedido()
 // ===============================
-// Limpia el carrito y reinicia el total a 0.
-// Regresa al usuario a la sección de inicio.
+// Limpia carrito, borra localStorage y regresa al inicio.
 
 function reiniciarPedido(){
 
-    // Vacía el arreglo carrito.
     carrito = [];
-
-    // Reinicia el total.
     total = 0;
 
-    // Actualiza visualmente el carrito.
-    actualizarCarrito();
+    localStorage.removeItem("carrito");
+    localStorage.removeItem("total");
 
-    // Regresa a la sección principal.
+    actualizarCarrito();
     mostrarSeccion("inicio");
 }
+
+
+// ===============================
+// RESTAURAR DATOS AL CARGAR
+// ===============================
+// Cuando la página se abre o recarga,
+// restaura automáticamente el carrito guardado.
+
+document.addEventListener("DOMContentLoaded", ()=>{
+    actualizarCarrito();
+});
